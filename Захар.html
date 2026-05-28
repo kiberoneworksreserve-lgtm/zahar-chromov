@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Захар и Ирина · Мечты и доброта</title>
+  <!-- Подключаем красивый народный рукописный шрифт и современный читаемый шрифт -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (свежие иконки, бесплатно) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fef7e8 0%, #f1f7e6 100%);
+      font-family: 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #2e3b2c;
+      line-height: 1.4;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+
+    /* природные декоративные элементы (облака, абстрактные листья) */
+    body::before {
+      content: "☁️☁️☁️";
+      font-size: 120px;
+      position: absolute;
+      top: 20px;
+      left: -30px;
+      opacity: 0.1;
+      white-space: nowrap;
+      pointer-events: none;
+      transform: rotate(-8deg);
+      font-family: monospace;
+      letter-spacing: 25px;
+    }
+
+    body::after {
+      content: "🍃🌿🍂";
+      font-size: 90px;
+      bottom: 10px;
+      right: 10px;
+      position: absolute;
+      opacity: 0.12;
+      pointer-events: none;
+      transform: scaleX(-1);
+    }
+
+    /* главный контейнер */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* шапка с вдохновляющим заголовком */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 1rem 0 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(3rem, 10vw, 5.8rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #4f7a4c, #c27e3a, #dc9e5f);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 2px 2px 12px rgba(150, 100, 40, 0.1);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #6c5b3e;
+      background-color: rgba(255, 250, 235, 0.7);
+      display: inline-block;
+      padding: 0.5rem 2rem;
+      border-radius: 60px;
+      backdrop-filter: blur(3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* сетка карточек */
+    .cards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+      margin: 3rem 0 2rem;
+    }
+
+    .card {
+      flex: 1;
+      min-width: 280px;
+      max-width: 500px;
+      background: rgba(255, 253, 245, 0.95);
+      backdrop-filter: blur(1px);
+      border-radius: 64px 48px 64px 32px;
+      box-shadow: 0 30px 40px -20px rgba(60, 45, 20, 0.25), 0 8px 16px rgba(0,0,0,0.05);
+      padding: 2.2rem 1.8rem 2.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid #f5e2c1;
+      text-align: center;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 40px 50px -22px rgba(70, 55, 25, 0.3);
+      background: #fffff9;
+      border-color: #e9cf9b;
+    }
+
+    /* иконка-аватар в карточке */
+    .avatar-icon {
+      font-size: 4.8rem;
+      background: #e9f0e2;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      color: #c27e3a;
+      box-shadow: 0 10px 15px -7px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover .avatar-icon {
+      transform: scale(1.02);
+      background: #fdf4e0;
+    }
+
+    /* народный рукописный шрифт для имён */
+    .card h2 {
+      font-family: 'Caveat', cursive;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #4b6a3b;
+      margin-bottom: 0.75rem;
+      letter-spacing: 1px;
+      border-bottom: 3px dashed #e2cca5;
+      display: inline-block;
+      padding-bottom: 0.2rem;
+    }
+
+    .age-badge {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: #fff0db;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+      margin: 0.5rem 0 0.8rem;
+      color: #ac6e2e;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .dream-box, .superpower-box {
+      background: #fef4e6;
+      padding: 1rem;
+      border-radius: 48px;
+      margin: 1.2rem 0;
+      text-align: left;
+      box-shadow: inset 0 0 0 1px #fffaef, 0 6px 12px -8px rgba(0,0,0,0.05);
+    }
+
+    .dream-box i, .superpower-box i {
+      font-size: 1.8rem;
+      color: #e2a14e;
+      width: 2rem;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .dream-text, .power-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: inline-block;
+      vertical-align: middle;
+      color: #4b3b28;
+    }
+
+    .dream-desc, .power-desc {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      padding-left: 2rem;
+      color: #5c543c;
+      font-weight: 500;
+    }
+
+    .highlight {
+      font-family: 'Caveat', cursive;
+      font-size: 1.9rem;
+      font-weight: bold;
+      color: #bc6f2c;
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    /* описание мечты с изюминкой */
+    .feather-note {
+      font-size: 1.2rem;
+      background: #eef3e5;
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #2e6732;
+      font-weight: 600;
+    }
+
+    .card-footer {
+      margin-top: 1.8rem;
+      font-size: 1rem;
+      border-top: 1px solid #f0e2ce;
+      padding-top: 1rem;
+      color: #8b7a60;
+    }
+
+    /* общая вставка — природная цитата */
+    .quote-block {
+      background: #f9efdf;
+      border-radius: 48px;
+      padding: 1.8rem;
+      margin: 3rem auto 1.5rem;
+      text-align: center;
+      max-width: 800px;
+      box-shadow: 0 12px 22px -10px rgba(75, 55, 25, 0.1);
+      border-left: 8px solid #e2b87a;
+    }
+
+    .quote-block i {
+      font-size: 2rem;
+      color: #c19354;
+      margin: 0 0.5rem;
+    }
+
+    .quote-text {
+      font-family: 'Caveat', cursive;
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #5a4227;
+    }
+
+    .quote-author {
+      margin-top: 0.6rem;
+      font-weight: 600;
+      color: #8b6946;
+    }
+
+    /* футер */
+    .footer {
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 1rem;
+      color: #91845f;
+      padding: 1.2rem;
+      border-top: 1px solid rgba(150, 125, 85, 0.2);
+    }
+
+    /* адаптивность для мобильных устройств */
+    @media (max-width: 780px) {
+      body {
+        padding: 1rem;
+      }
+      .card {
+        padding: 1.6rem;
+      }
+      .card h2 {
+        font-size: 2.6rem;
+      }
+      .dream-text, .power-text {
+        font-size: 1.3rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+        padding: 0.4rem 1.2rem;
+      }
+      .quote-text {
+        font-size: 1.5rem;
+      }
+      .avatar-icon {
+        width: 85px;
+        height: 85px;
+        font-size: 3.8rem;
+      }
+    }
+
+    /* индивидуальные акценты для карточек */
+    .card-zakhar .avatar-icon {
+      background: #e6ddcf;
+      color: #d78a44;
+    }
+    .card-irina .avatar-icon {
+      background: #e0eddb;
+      color: #a87342;
+    }
+
+    /* кнопка-настроение не функциональная, только для уюта */
+    .wish {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      cursor: default;
+      background: #ede5d4;
+      border-radius: 60px;
+      padding: 0.25rem 1rem;
+      margin-top: 1rem;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      color: #735f3d;
+    }
+
+    /* большие шрифты + читаемость */
+    p, li, .card-footer {
+      font-size: 1.1rem;
+    }
+
+    .extra-note {
+      font-size: 1rem;
+      background: #fffae9;
+      border-radius: 28px;
+      padding: 0.3rem 0.8rem;
+    }
+
+    /* лепестки / природные нюансы */
+    .leaf-bg {
+      position: absolute;
+      font-size: 45px;
+      bottom: 10%;
+      left: 2%;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hero">
+    <h1>🌸 Лети, мечта! 🌸</h1>
+    <p><i class="fas fa-feather-alt"></i> История одной невероятной семьи <i class="fas fa-hand-sparkles"></i></p>
+  </div>
+
+  <div class="cards-grid">
+    <!-- КАРТОЧКА ЗАХАРА (ребёнок) -->
+    <div class="card card-zakhar">
+      <div class="avatar-icon">
+        <i class="fas fa-child"></i>
+      </div>
+      <h2>Захар</h2>
+      <div class="age-badge">
+        <i class="fas fa-star-of-life"></i> 8 лет <i class="fas fa-star-of-life"></i>
+      </div>
+      <div class="dream-box">
+        <div>
+          <i class="fas fa-cloud-moon"></i>
+          <span class="dream-text">✨ Мечта всей души ✨</span>
+        </div>
+        <div class="dream-desc">
+          «Научиться летать!»
+          <span class="highlight"><i class="fas fa-feather"></i>  как птица, как ветер <i class="fas fa-dove"></i></span>
+        </div>
+      </div>
+      <div class="feather-note">
+        <i class="fas fa-fan"></i> Прыгает с качелей и машет руками
+      </div>
+      <div class="card-footer">
+        <i class="fas fa-quote-left"></i> Однажды я полечу выше облаков!
+      </div>
+      <!-- милая иконка-пожелание -->
+      <div class="wish">
+        <i class="fas fa-heart" style="color:#dd8877;"></i> <span>поверь в себя, Захар</span> <i class="fas fa-feather-alt"></i>
+      </div>
+    </div>
+
+    <!-- КАРТОЧКА ИРИНЫ (родитель, мама) -->
+    <div class="card card-irina">
+      <div class="avatar-icon">
+        <i class="fas fa-female"></i>
+      </div>
+      <h2>Ирина</h2>
+      <div class="superpower-box">
+        <div>
+          <i class="fas fa-shield-heart"></i>
+          <span class="power-text">⭐ Суперспособность ⭐</span>
+        </div>
+        <div class="power-desc">
+          <span style="font-size: 2rem; vertical-align: middle;">🌼</span> 
+          <strong class="highlight" style="font-size: 1.8rem;">ДОБРАЯ</strong>
+        </div>
+        <div class="dream-desc" style="padding-left: 0.5rem;">
+          Её доброта согревает, как ласковое солнце. 
+          <i class="fas fa-sun"></i> Она никогда не устаёт обнимать и верить в чудеса.
+        </div>
+      </div>
+      <div class="feather-note" style="background:#f2e8da;">
+        <i class="fas fa-hands-helping"></i>  «Сынок, мечтай смело — я всегда рядом!»
+      </div>
+      <div class="card-footer">
+        <i class="fas fa-heart" style="color:#df8a6a;"></i>  Доброта — самый мощный двигатель
+      </div>
+      <div class="wish">
+        <i class="fas fa-star"></i> спасибо за тепло, Ирина <i class="fas fa-star"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- вдохновляющая цитата, объединяющая ребёнка и родителя -->
+  <div class="quote-block">
+    <i class="fas fa-quote-left"></i>
+    <div class="quote-text">
+      Когда мечта ребёнка встречает доброту родителя — рождаются крылья.
+    </div>
+    <div class="quote-author">
+      🌿 Захар & Ирина 🌿
+    </div>
+    <i class="fas fa-feather-alt"></i> <i class="fas fa-dove"></i> <i class="fas fa-feather-alt"></i>
+  </div>
+
+  <!-- маленькая секция-акцент о силе народной мудрости и природе -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 1rem;">
+    <div class="extra-note">
+      <i class="fas fa-tree"></i>  Природная сила: ветер несёт мечты
+    </div>
+    <div class="extra-note">
+      <i class="fas fa-hand-peace"></i>  Ирина всегда рядом, добрая как летний дождь
+    </div>
+    <div class="extra-note">
+      <i class="fas fa-crow"></i>  Захар верит: однажды он воспарит
+    </div>
+  </div>
+
+  <div class="footer">
+    <i class="fas fa-feather"></i>   Семья — это место, где мечты обретают крылья   <i class="fas fa-leaf"></i><br>
+    <span style="font-size: 0.9rem;">с любовью и добротой, каждый день ✨</span>
+  </div>
+</div>
+
+<!-- небольшой декоративный природный орнамент (дополнительный фон) -->
+<div class="leaf-bg" aria-hidden="true">🍂🍃🌾</div>
+</body>
+</html>
